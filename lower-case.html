@@ -19,17 +19,17 @@
             else { return ""; }
         },
         oneditprepare: function() {
-
+            
             $("#node-input-pin").on("change", function() {
                 this.pin = $("#node-input-pin").val();
                 $("#pinform input[value="+this.pin+"]").prop('checked', true);
-            });
+            }); 
 
             $('#pinform input').on('change', function() {
                 this.pin = $("#pinform input[type='radio']:checked").val();
                 $("#node-input-pin").val(this.pin);
             });
-        }
+        } 
     });
 </script>
 
