@@ -12,5 +12,8 @@
     "nodes": {
       "gpio-out": "gpio-out.js"
     }
+  },
+  "dependencies": {
+    "python-shell": "^3.0.1"
   }
 }

@@ -1,10 +1,7 @@
 
 # Import library functions we need
 #import RPi.GPIO as GPIO
-import struct
 import sys
-import os
-import subprocess
 from time import sleep
 
 #PEGA ENTRADA

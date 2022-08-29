@@ -1,28 +1,24 @@
+//npm install python-shell
 module.exports = function(RED) {
     function GpioOut(config) {
         RED.nodes.createNode(this,config);
         this.pin = config.pin;
         var node = this;
-
-        var execSync = require('child_process').execSync;
-        var exec = require('child_process').exec;
-        var spawn = require('child_process').spawn;
-
-        var gpioCommand  = __dirname+'/testgpio.py';
-        
-        function inputlistener(msg, send, done) {
-            if (msg.payload === "true") { msg.payload = true; }
-            if (msg.payload === "false") { msg.payload = false; }
-
-            node.child.stdin.write(out+"\n", () => {
-                if (done) { done(); }
-            });
-        }
-
+        const { exec } = require('child_process');
+        var testCommand = __dirname+'/testgpio.py'
         node.on('input', function(msg) {
             msg.payload = this.pin;
-            node.child = spawn(gpioCommand, ["pwm",52,"up"]);
-            node.on("input", inputlistener);
+            console.log("teste");
+            exec('python '+ testCommand + ' pwm 32 up', (err, stdout, stderr) => {
+            if (err) {
+                // node couldn't execute the command
+                return;
+            }
+            
+            // the *entire* stdout and stderr (buffered)
+            console.log(`stdout: ${stdout}`);
+            //console.log(`stderr: ${stderr}`);
+            });
             node.send(msg);
         });
     }
