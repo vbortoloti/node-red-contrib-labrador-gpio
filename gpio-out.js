@@ -5,7 +5,7 @@ module.exports = function(RED) {
         this.pin = config.pin;
         var node = this;
         const { exec } = require('child_process');
-        var testCommand = __dirname+'/testgpio.py'
+        var testCommand = __dirname+'/testprint.py'
         node.on('input', function(msg) {
             msg.payload = this.pin;
             console.log("teste");
