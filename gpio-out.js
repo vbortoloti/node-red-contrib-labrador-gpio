@@ -9,7 +9,7 @@ module.exports = function(RED) {
         node.on('input', function(msg) {
             msg.payload = this.pin;
             console.log("teste");
-            exec('python '+ testCommand + ' pwm 32 up', (err, stdout, stderr) => {
+            exec('python3 '+ testCommand /*+ ' pwm 32 up'*/, (err, stdout, stderr) => {
             if (err) {
                 // node couldn't execute the command
                 return;
