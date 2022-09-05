@@ -29,5 +29,7 @@ while True:
         print("Led High")
         labrador.led_out.high()
         time.sleep(2)
-        print("Led Low")
         labrador.led_out.low()
+        print("Led Low")
+        time.sleep(2)
+
