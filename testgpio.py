@@ -20,8 +20,9 @@ except NameError:
 
 pin = int(sys.argv[1])
 print("led "+str(pin)+" high")
+labrador = Labrador()  
 labrador.gpio3.enable_io(GPIO.Direction.OUTPUT, alias="led_out")
-# labrador = Labrador()   
+ 
 # getGpio(pin)
 print("runnin")
 
