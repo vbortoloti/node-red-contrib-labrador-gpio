@@ -15,7 +15,7 @@ module.exports = function(RED) {
             msg.payload = this.pin;
             console.log("teste");
 
-            node.child = spawn('python',["./testprint.py",2,2]);
+            node.child = spawn('python3',["./testgpio.py"]);
             console.log("tryen");
 
             let output;
