@@ -15,13 +15,13 @@ module.exports = function(RED) {
             msg.payload = this.pin;
             console.log("teste");
 
-            node.child = spawn('python3',["./testgpio.py"]);
+         /*    node.child = spawn('python3',["./testgpio.py"]);
             console.log("tryen");
 
             let output;
             node.child.stdout.on("data", (data) => {
                 output += data;
-            });
+            }); */
 
             console.log(output);
             
