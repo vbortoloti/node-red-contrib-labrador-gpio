@@ -22,30 +22,12 @@ pin = int(sys.argv[1])
 print("led "+str(pin)+" high")
 labrador = Labrador()  
 labrador.gpio3.enable_io(GPIO.Direction.OUTPUT, alias="led_out")
- 
 # getGpio(pin)
 print("runnin")
 
 while True:
-        try:
-            data = raw_input()
-            if 'close' in data:
-                sys.exit(0)
-            data = int(data)
-        except (EOFError, SystemExit):        # hopefully always caused by us sigint'ing the program
-            print("erro")
-            sys.exit(0)
-     
-      
-        if(data == 1):
-            print("Led High")
-            labrador.led_out.high()
-        elif(data ==0):
-            print("Led Low")
-            labrador.led_out.low()
-        else:
-            print('invalid input')
-            break
-
-
-        print("saida: "+str(data))
+        print("Led High")
+        labrador.led_out.high()
+        time.sleep(2)
+        print("Led Low")
+        labrador.led_out.low()
