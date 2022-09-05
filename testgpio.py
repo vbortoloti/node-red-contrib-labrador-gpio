@@ -1,5 +1,5 @@
-# from labrador_sdk.gpio import GPIO
-# from labrador_sdk.main import Labrador
+from labrador_sdk.gpio import GPIO
+from labrador_sdk.main import Labrador
 from cgi import test
 import time
 import sys
