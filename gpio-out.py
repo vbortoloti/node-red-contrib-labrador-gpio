@@ -1,5 +1,5 @@
-from labrador_sdk.gpio import GPIO
-from labrador_sdk.main import Labrador
+
+import caninos_sdk as k9
 from cgi import test
 import time
 import sys
@@ -11,17 +11,17 @@ except NameError:
 
 def getGpio(pin):
     if(pin == 3):
-        labrador.gpio3.enable_io(GPIO.Direction.OUTPUT, alias="led_out")
+        labrador.pin3.enable_gpio(k9.Pin.Direction.OUTPUT, alias="led_out")
     elif(pin == 5):
-        labrador.gpio7.enable_io(GPIO.Direction.OUTPUT, alias="led_out")
+        labrador.pin3.enable_gpio(k9.Pin.Direction.OUTPUT, alias="led_out")
     else:
-        labrador.gpio11.enable_io(GPIO.Direction.OUTPUT, alias="led_out") 
+        labrador.pin3.enable_gpio(k9.Pin.Direction.OUTPUT, alias="led_out")
     
 
 pin = int(sys.argv[1])
 print("led "+str(pin)+" high")
 
-labrador = Labrador()   
+labrador = k9.Labrador()   
 getGpio(pin)
 print("running")
 
@@ -44,6 +44,5 @@ while True:
         else:
             print('invalid input')
             break
-
 
         print("saida: "+str(data))
