@@ -12,8 +12,8 @@ module.exports = function(RED) {
 
         var node = this;
         var gpioCommand = __dirname+'/gpio-out.sh';
-        //var spawn = require("child_process").spawn;
-        //node.child = spawn(gpioCommand, [2]);
+        var spawn = require("child_process").spawn;
+        node.child = spawn(gpioCommand, [2]);
         console.log("Spawning child process");
 
         function check_input(msg){
@@ -31,7 +31,7 @@ module.exports = function(RED) {
             console.log(this.initstate);
             console.log(this.set);
 
-            /* -- Infinite Loop -- 
+            /* -- Infinite Loop -- */
             if (node.child !== null) {
                 node.child.stdin.write(out+"\n", () => {
                     if (done) { done(); }
@@ -39,7 +39,7 @@ module.exports = function(RED) {
             }else {
                 console.log("erro")
             }
-            */
+            
             //node.send(msg);
         }
 
