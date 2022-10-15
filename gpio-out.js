@@ -3,6 +3,7 @@ module.exports = function(RED) {
 
     function GpioOut(config) {
         RED.nodes.createNode(this,config);
+
         this.pin = config.pin;
         this.iotype = config.iotype;
         this.freq = config.freq;
@@ -24,6 +25,9 @@ module.exports = function(RED) {
 
         function inputlistener(msg, send, done) {
             var out;
+            if(msg.payload === "true"){ msg.payload = true;out =1}
+            if(msg.payload === "false"){ msg.payload = false;out =0}
+
             msg.payload = check_input(msg.payload);
             console.log(this.pin);
             console.log(this.iotype);
@@ -40,7 +44,7 @@ module.exports = function(RED) {
                 console.log("erro")
             }
             
-            //node.send(msg);
+            node.send(msg);
         }
 
         node.on('input',inputlistener);
