@@ -1,11 +1,14 @@
 //npm install python-shell
 module.exports = function(RED) {
+
     function GpioOut(config) {
         RED.nodes.createNode(this,config);
         this.pin = config.pin;
-        this.io_type = config.io_type;
+        this.iotype = config.iotype;
         this.freq = config.freq;
-        this.init_state = config.init_state;
+        this.initstate = config.initstate;
+        this.set = config.set;
+        
 
         var node = this;
         var gpioCommand = __dirname+'/gpio-out.sh';
@@ -23,9 +26,10 @@ module.exports = function(RED) {
             var out;
             msg.payload = check_input(msg.payload);
             console.log(this.pin);
-            console.log(this.io_type);
+            console.log(this.iotype);
             console.log(this.freq);
-            console.log(this.init_state);
+            console.log(this.initstate);
+            console.log(this.set);
 
             /* -- Infinite Loop -- 
             if (node.child !== null) {

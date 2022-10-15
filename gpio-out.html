@@ -22,10 +22,11 @@
         color: '#e9e9e9',
         defaults: {
             name: { value:"" },
-            pin: { value:""},
-            io_type:{value:""},
-            freq:{value:""},
-            init_state:{value:""}
+            pin: { value:"" },
+            iotype: { value:"" },
+            freq: { value:"" },
+            initstate: { value:"" },
+            set: {value:""}
         },
         inputs:1,
         outputs:1,
@@ -40,7 +41,7 @@
             else { return ""; }
         },
         oneditprepare: function() {
-            
+            // PIN POR FORM
             $("#node-input-pin").on("change", function() {
                 var pinnew = $("#node-input-pin").val();
                 if (pinnew && pinList.includes(pinnew)){
@@ -55,44 +56,42 @@
                 }                
             }); 
 
+            // PIN POR BULLET 
             $('#pinform input').on('change', function() {
                 this.pin =  $("#pinform input[type='radio']:checked").val();
                 $("#node-input-pin").val(this.pin);
             });
 
+            // FREQ POR FORM
             $('#node-set-freq').on('change', function() {
                 this.freq = $('#node-set-freq').val();
+                this.setstate = $('#node-set-freq').val();
+                this.iotype = $('#node-set-freq').val();
             });
 
 
-            var hidestate = function () {
-                this.io_type = $("#node-input-out").val();
-                if ($("#node-input-out").val() === "pwm") {
+            var hidestate = function () { 
+                if($("#node-input-iotype").val()==="pwm"){
                     $('#node-set-tick').hide();
-                    $('#node-set-state').hide();
+                    $('#node-set-initstate').hide();
                     $('#node-input-set').prop('checked', false);
-                    $("#dig-tip").hide();
-                    $("#pwm-tip").show();
                     $('#node-set-freq').show();
-                }
-                else {
-                    this.io_type = 2;
-                    this.freq = "";
+                }else{
                     $('#node-set-tick').show();
-                    $("#dig-tip").show();
-                    $("#pwm-tip").hide();
                     $('#node-set-freq').hide();
+                    
                 }
-            };
+             };
+                 
+            $("#node-input-iotype").on("change", function () { hidestate(); });
 
-            $("#node-input-out").on("change", function () { hidestate(); });
-            hidestate();
+             hidestate();
 
             var setstate = function () {
                 if ($('#node-input-set').is(":checked")) {
-                    $("#node-set-state").show();
+                    $("#node-set-initstate").show();
                 } else {
-                    $("#node-set-state").hide();
+                    $("#node-set-initstate").hide();
                 }
             };
 
@@ -280,11 +279,11 @@
     </div>
 
     <!-- TYPE -->
-    <div class="form-row" id="node-set-pwm">
+    <div class="form-row" id="node-set-iotype">
         <label><span data-i18n="labrador-gpio.label.type"></span>Type</label>
-        <select id="node-input-out" style="width: 250px;">
+        <select id="node-input-iotype" style="width: 250px;">
             <option value="out" data-i18n="labrador-gpio.digout">Digital Output</option>
-            <option value="pwm" data-i18n="labrador-gpio.digout">PWM</option>
+            <option value="pwm" data-i18n="labrador-gpio.pwmout">PWM</option>
         </select>
     </div>
 
@@ -302,13 +301,14 @@
     </div>
 
     
-    <div class="form-row" id="node-set-state">
-        <label for="node-input-level">Inicial State</label>
-        <select id="node-input-level" style="width: 250px;">
+    <div class="form-row" id="node-set-initstate">
+        <label for="node-input-initstate">Inicial State</label>
+        <select id="node-input-initstate" style="width: 250px;">
             <option value="0" data-i18n="rpi-gpio.initpin0">0</option>
             <option value="1" data-i18n="rpi-gpio.initpin1">1</option>
         </select>
     </div>
+
 </script>
 
 
