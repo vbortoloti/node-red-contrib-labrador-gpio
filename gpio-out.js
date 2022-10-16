@@ -5,10 +5,10 @@ module.exports = function(RED) {
         RED.nodes.createNode(this,config);
 
         this.pin = config.pin;
-        this.iotype = config.iotype;
-        this.freq = config.freq;
-        this.initstate = config.initstate;
-        this.set = config.set;
+        this.iotype = config.iotype || "out";
+        this.freq = config.freq || 0;
+        this.initstate = config.initstate || 0;
+        this.set = config.set || false;
         
 
         var node = this;
