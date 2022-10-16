@@ -20,7 +20,7 @@ module.exports = function(RED) {
         function inputlistener(msg, send, done) {
             if(out == 1) out =0;
             else out == 1;
-            
+            console.log(out)
             if (node.child !== null) {
                 node.child.stdin.write(out+"\n", () => {
                     if (done) { done(); }
