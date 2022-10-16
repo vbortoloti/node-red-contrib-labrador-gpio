@@ -7,7 +7,7 @@ module.exports = function(RED) {
         this.pin = config.pin;
         this.iotype = config.iotype || "out";
         this.freq = config.freq || 0;
-        this.initstate = config.initstate || 0;
+        this.initstate = parseInt(config.initstate) || 0;
         this.set = config.set || false;
         
 
