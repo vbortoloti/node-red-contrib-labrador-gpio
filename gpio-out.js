@@ -24,11 +24,10 @@ module.exports = function(RED) {
                 out = 0;
             }
 
-            console.log(out);
-            console.log(this.iotype);
-            console.log(this.freq);
-            console.log(this.initstate);
-            console.log(this.set);
+            console.log(out+"----");
+            console.log(this.pin+" "+this.iotype+" "+this.freq
+            +" "+this.initstate+" "+this.set);
+            
             if (node.child !== null) {
                 node.child.stdin.write(out+"\n", () => {
                     if (done) { done(); }
