@@ -12,14 +12,14 @@ module.exports = function(RED) {
         
 
         var node = this;
-        var gpioCommand = __dirname+'/gpio-out.sh';
+        var gpioCommand = __dirname+'/gpio-out.sh '+this.pin;
         var spawn = require("child_process").spawn;
         node.child = spawn(gpioCommand, [2]);
         console.log("Spawning child process");
 
         function check_input(msg){
-            if (msg.payload === "true" || msg.payload === 1) { msg.payload = true; out = 1 }
-            if (msg.payload === "false" || msg.payload === 0) { msg.payload = false; out = 0}
+            if (msg.payload === "true" || msg.payload === 1) { msg.payload = true; out = 1;}
+            if (msg.payload === "false" || msg.payload === 0) { msg.payload = false; out = 0;}
             return msg;
         }
 
