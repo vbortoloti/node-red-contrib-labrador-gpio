@@ -18,7 +18,12 @@ module.exports = function(RED) {
         console.log("Spawning child process");
         var out = 0;
         function inputlistener(msg, send, done) {
-            out = msg.payload;
+            if(msg.payload === "true" || msg.payload === "1"){
+                out = 1;
+            }else if(msg.payload === "false" || msg.payload === "0"){
+                out = 0;
+            }
+
             console.log(out);
             if (node.child !== null) {
                 node.child.stdin.write(out+"\n", () => {
