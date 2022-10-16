@@ -19,7 +19,7 @@ pin = int(sys.argv[1])
 print("led "+str(pin)+" high")
 
 labrador = k9.Labrador()   
-getGpio(pin)
+getGpio(labrador,pin)
 print("running")
 
 while True:
