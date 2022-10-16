@@ -16,7 +16,7 @@ def getGpio(labrador, pin_to_enable):
         pin.enable_gpio(k9.Pin.Direction.OUTPUT, alias="led_out")
 
 pin = int(sys.argv[1])
-mode = int(sys.argv[2])
+mode = str(sys.argv[2])
 freq = int(sys.argv[3])
 init_state = int(sys.argv[4])
 begin_with_init_state = str(sys.argv[5])
