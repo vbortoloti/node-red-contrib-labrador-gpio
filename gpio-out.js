@@ -25,6 +25,10 @@ module.exports = function(RED) {
             }
 
             console.log(out);
+            console.log(this.iotype);
+            console.log(this.freq);
+            console.log(this.initstate);
+            console.log(this.set);
             if (node.child !== null) {
                 node.child.stdin.write(out+"\n", () => {
                     if (done) { done(); }
