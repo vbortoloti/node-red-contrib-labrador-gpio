@@ -26,7 +26,7 @@ print("led "+str(pin)+" high")
 labrador = k9.Labrador()   
 getGpio(labrador,pin)
 if(begin_with_init_state == "true"):
-     if(init_state == 1):
+    if(init_state == 1):
         print("Led High")
         labrador.led_out.high()
     elif(init_state ==0):
