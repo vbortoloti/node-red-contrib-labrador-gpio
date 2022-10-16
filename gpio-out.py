@@ -9,14 +9,11 @@ try:
 except NameError:
     raw_input = input  # Python 3
 
-def getGpio(pin):
-    if(pin == 3):
-        labrador.pin3.enable_gpio(k9.Pin.Direction.OUTPUT, alias="led_out")
-    elif(pin == 5):
-        labrador.pin3.enable_gpio(k9.Pin.Direction.OUTPUT, alias="led_out")
-    else:
-        labrador.pin3.enable_gpio(k9.Pin.Direction.OUTPUT, alias="led_out")
-    
+def getGpio(labrador, pin_to_enable):
+    pin_to_enable = f"pin{pin_to_enable}"
+    if hasattr(labrador, pin_to_enable):
+        pin = getattr(labrador, pin_to_enable)
+        pin.enable_gpio(k9.Pin.Direction.OUTPUT, alias="led_out")
 
 pin = int(sys.argv[1])
 print("led "+str(pin)+" high")
