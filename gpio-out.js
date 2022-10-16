@@ -14,7 +14,7 @@ module.exports = function(RED) {
         var node = this;
         var gpioCommand = __dirname+'/gpio-out.sh';
         var spawn = require("child_process").spawn;
-        node.child = spawn(gpioCommand, this.pin);
+        node.child = spawn(gpioCommand, [this.pin]);
         console.log("Spawning child process");
 
         function check_input(msg){
