@@ -16,11 +16,10 @@ module.exports = function(RED) {
         var spawn = require("child_process").spawn;
         node.child = spawn(gpioCommand, [this.pin]);
         console.log("Spawning child process");
-
+        var out = 0;
         function inputlistener(msg, send, done) {
-            var out;
-            if (msg.payload === "true") { msg.payload = true; out = 1 }
-            if (msg.payload === "false") { msg.payload = false; out = 0}
+            if(out == 1) out =0;
+            else out == 1;
             
             if (node.child !== null) {
                 node.child.stdin.write(out+"\n", () => {
