@@ -29,6 +29,7 @@ module.exports = function(RED) {
             if(msg.payload === "false"){ msg.payload = false;out =0}
 
             msg.payload = check_input(msg.payload);
+            out = check_input(msg.payload);
             console.log(this.pin);
             console.log(this.iotype);
             console.log(this.freq);
