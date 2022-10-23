@@ -23,7 +23,7 @@ while True:
         print(count)
         if count == 120:
             labrador.inA.low()
-            time.sleep(500)
+            time.sleep(0.5)
             count =0
             labrador.inA.high()
 
