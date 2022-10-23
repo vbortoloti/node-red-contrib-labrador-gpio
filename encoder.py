@@ -15,7 +15,7 @@ labrador.inA.high()
 labrador.inB.low()
 
 while True:
-    read  = labrador.button1.read()
+    read  = labrador.encoder.read()
     if read != lastRead:
         lastRead = read
         print(read)
