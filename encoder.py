@@ -3,8 +3,8 @@ import time
 
 labrador = k9.Labrador()
 
-labrador.pin3.enable_gpio(k9.Pin.Direction.INPUT, alias="inA")
-labrador.pin5.enable_gpio(k9.Pin.Direction.INPUT, alias="inB")
+labrador.pin3.enable_gpio(k9.Pin.Direction.OUTPUT, alias="inA")
+labrador.pin5.enable_gpio(k9.Pin.Direction.OUTPUT, alias="inB")
 labrador.pin7.enable_gpio(k9.Pin.Direction.INPUT, alias="encoder")
 
 lastRead= 0
