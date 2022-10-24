@@ -29,8 +29,7 @@ while True:
     if read != lastRead:
         lastRead = read
         print(read)
-        count += 1
-        print(count)
+        
     time.sleep(0.01)
 
 
