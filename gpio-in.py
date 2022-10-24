@@ -13,7 +13,7 @@ def getGpio(labrador, pin_to_enable):
     pin_to_enable = f"pin{pin_to_enable}"
     if hasattr(labrador, pin_to_enable):
         pin = getattr(labrador, pin_to_enable)
-        pin.enable_gpio(k9.Pin.Direction.INPUT, alias="led_in")
+        pin.enable_gpio(k9.Pin.Direction.INPUT, alias="input")
 
 pin = int(sys.argv[1])
 
@@ -23,9 +23,9 @@ labrador = k9.Labrador()
 getGpio(labrador,pin)
 print("running")
 
-lastRead  = labrador.encoder.read()
+lastRead  = labrador.input.read()
 while True:
-    read  = labrador.encoder.read()
+    read  = labrador.input.read()
     if read != lastRead:
         lastRead = read
         print(read)
