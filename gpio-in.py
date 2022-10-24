@@ -26,7 +26,7 @@ print("running")
 lastRead  = labrador.encoder.read()
 while True:
     read  = labrador.encoder.read()
-     if read != lastRead:
+    if read != lastRead:
         lastRead = read
         print(read)
         count += 1
