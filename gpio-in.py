@@ -31,7 +31,7 @@ while True:
         print(read)
         count += 1
         print(count)
-    sleep(0.01)
+    time.sleep(0.01)
 
 
 
