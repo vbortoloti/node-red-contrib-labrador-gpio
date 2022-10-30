@@ -25,18 +25,14 @@ module.exports = function(RED) {
             }
         });
 
-        node.child.on('close', function (code) {
-            node.running = false;
-            node.child.removeAllListeners();
-            if (node.finished) {
-                node.finished();
-            }
-        });
-
         node.on("close", function(done) {
             if (node.child != null) {
                 node.finished = done;
-                node.child.kill();
+                node.child.stdin.write("close "+node.pin, () => {
+                    if (node.child) {
+                        node.child.kill('SIGKILL');
+                    }
+                });
             }
             else { if (done) { done(); } }
         });
