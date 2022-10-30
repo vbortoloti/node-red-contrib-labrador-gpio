@@ -1,6 +1,5 @@
 //npm install python-shell
 module.exports = function(RED) {
-
     function GpioOut(config) {
         RED.nodes.createNode(this,config);
 
@@ -43,7 +42,14 @@ module.exports = function(RED) {
         node.on('input',inputlistener);
 
         node.on("close", function(done) {
-            node.child.kill();
+            if (node.child != null) {
+                node.finished = done;
+                node.child.stdin.write("close "+node.pin, () => {
+                    node.child.kill('SIGKILL');
+                    setTimeout(function() { if (done) { done(); } }, 50);
+                });
+            }
+            else { if (done) { done(); } }
         });
  
     }
