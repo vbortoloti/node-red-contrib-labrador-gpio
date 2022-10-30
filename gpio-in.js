@@ -25,12 +25,21 @@ module.exports = function(RED) {
             }
         });
 
+        node.child.on('close', function (code) {
+            node.running = false;
+            node.child.removeAllListeners();
+            if (node.finished) {
+                node.finished();
+            }
+        });
+
         node.on("close", function(done) {
             if (node.child != null) {
                 node.finished = done;
                 node.child.stdin.write("close "+node.pin, () => {
-                    node.child.kill('SIGKILL');
-                    setTimeout(function() { if (done) { done(); } }, 50);
+                    if (node.child) {
+                        node.child.kill('SIGKILL');
+                    }
                 });
             }
             else { if (done) { done(); } }
