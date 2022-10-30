@@ -17,11 +17,26 @@ module.exports = function(RED) {
         console.log("Spawning child process");
         var out = 0;
        
-        node.child.stdout.on('data', function (data) {
-            var d = data.toString().trim().split("\n");
-            for (var i = 0; i < d.length; i++) {
-                if (d[i] === '') { return; }
-                else{node.send({ topic:"gpio/"+node.pin, payload:Number(d[i]) });}
+        var startPin = function() {
+            node.child.stdout.on('data', function (data) {
+                var d = data.toString().trim().split("\n");
+                for (var i = 0; i < d.length; i++) {
+                    if (d[i] === '') { return; }
+                    else{node.send({ topic:"gpio/"+node.pin, payload:Number(d[i]) });}
+                }
+            });
+        }
+        startPin();
+
+        node.child.on('close', function (code) {
+            node.running = false;
+            node.child.removeAllListeners();
+            delete node.child;
+            if (!node.finished && code === 1) {
+                setTimeout(function() {startPin()}, 250);
+            }
+            else if (node.finished) {
+                node.finished();
             }
         });
 
