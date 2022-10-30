@@ -17,13 +17,13 @@ def getGpio(labrador, pin_to_enable):
 
 pin = int(sys.argv[1])
 
-print("led "+str(pin)+" high")
 
 labrador = k9.Labrador()
 getGpio(labrador,pin)
-print("running")
 
 lastRead  = labrador.input.read()
+print(lastRead)
+
 while True:
     read  = labrador.input.read()
     if read != lastRead:
