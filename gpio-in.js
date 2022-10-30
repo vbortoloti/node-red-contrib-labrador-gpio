@@ -28,7 +28,7 @@ module.exports = function(RED) {
         node.on("close", function(done) {
             if (node.child != null) {
                 node.finished = done;
-                node.child.stdin.write("close "+node.pin, () => {
+                node.child.stdin.write("close", () => {
                     if (node.child) {
                         node.child.kill('SIGKILL');
                     }

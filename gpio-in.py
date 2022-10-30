@@ -36,8 +36,9 @@ readThread.start()
 
 while True:
     data = raw_input()
-    run = False
-    sys.exit(0)
+    if 'close' in data:
+        run = False
+        sys.exit(0)
 
 
 
