@@ -1,4 +1,4 @@
-
+#needs chmod +x gpio-n.sh
 import caninos_sdk as k9
 from cgi import test
 import time
@@ -16,12 +16,8 @@ def getGpio(labrador, pin_to_enable):
         pin.enable_gpio(k9.Pin.Direction.INPUT, alias="input")
 
 pin = int(sys.argv[1])
-
-print("led "+str(pin)+" high")
-
 labrador = k9.Labrador()
 getGpio(labrador,pin)
-print("running")
 
 lastRead  = labrador.input.read()
 while True:
