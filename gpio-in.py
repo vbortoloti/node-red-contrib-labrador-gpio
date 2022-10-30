@@ -1,4 +1,4 @@
-#needs chmod +x gpio-n.sh
+#needs chmod +x gpioin.sh
 import caninos_sdk as k9
 from cgi import test
 import time
@@ -20,6 +20,7 @@ labrador = k9.Labrador()
 getGpio(labrador,pin)
 
 lastRead  = labrador.input.read()
+print(lastReadlastRead)
 while True:
     read  = labrador.input.read()
     if read != lastRead:
