@@ -12,11 +12,11 @@ module.exports = function(RED) {
         var spawn = require("child_process").spawn;
         //FIX ME
         //node.child = spawn(gpioCommand, [this.pin, out, 100, 0, false]);
-        var out = 0;
         node.child = spawn(gpioCommand,[this.pin]);
+
         console.log("Spawning child process");
-
-
+        var out = 0;
+       
         node.child.stdout.on('data', function (data) {
             var d = data.toString().trim().split("\n");
             for (var i = 0; i < d.length; i++) {
@@ -26,19 +26,17 @@ module.exports = function(RED) {
         });
 
         node.child.on('close', function (code) {
+            node.running = false;
             node.child.removeAllListeners();
-            delete node.child;
-           
+            if (node.finished) {
+                node.finished();
+            }
         });
 
         node.on("close", function(done) {
             if (node.child != null) {
                 node.finished = done;
-                node.child.stdin.write("close "+node.pin, () => {
-                    if (node.child) {
-                        node.child.kill('SIGKILL');
-                    }
-                });
+                node.child.kill();
             }
             else { if (done) { done(); } }
         });
