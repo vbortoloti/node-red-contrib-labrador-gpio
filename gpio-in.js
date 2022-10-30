@@ -28,12 +28,7 @@ module.exports = function(RED) {
         node.child.on('close', function (code) {
             node.child.removeAllListeners();
             delete node.child;
-            if (!node.finished && code === 1) {
-                setTimeout(function() {startPin()}, 250);
-            }
-            else if (node.finished) {
-                node.finished();
-            }
+           
         });
 
         node.on("close", function(done) {
