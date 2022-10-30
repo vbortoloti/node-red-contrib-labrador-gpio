@@ -13,7 +13,7 @@ module.exports = function(RED) {
         //FIX ME
         //node.child = spawn(gpioCommand, [this.pin, out, 100, 0, false]);
         var out = 0;
-        
+
         var startPin = function() {
             node.child = spawn(gpioCommand,[this.pin]);
             console.log("Spawning child process");
@@ -37,7 +37,8 @@ module.exports = function(RED) {
                 }
             });
         }
-
+        startPin();
+        
         node.on("close", function(done) {
             if (node.child != null) {
                 node.finished = done;
