@@ -34,8 +34,8 @@ readThread.start()
 
 while True:
     data = raw_input()
-        run = False
-        sys.exit(0)
+    run = False
+    sys.exit(0)
 
 
 
