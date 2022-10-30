@@ -43,14 +43,7 @@ module.exports = function(RED) {
         node.on('input',inputlistener);
 
         node.on("close", function(done) {
-            if (node.child != null) {
-                node.finished = done;
-                node.child.stdin.write("close "+node.pin, () => {
-                    node.child.kill('SIGKILL');
-                    setTimeout(function() { if (done) { done(); } }, 50);
-                });
-            }
-            else { if (done) { done(); } }
+            node.child.kill();
         });
  
     }
