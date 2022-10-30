@@ -10,6 +10,8 @@ try:
 except NameError:
     raw_input = input  # Python 3
 
+run = True
+
 def getGpio(labrador, pin_to_enable):
     pin_to_enable = f"pin{pin_to_enable}"
     if hasattr(labrador, pin_to_enable):
@@ -17,7 +19,6 @@ def getGpio(labrador, pin_to_enable):
         pin.enable_gpio(k9.Pin.Direction.INPUT, alias="input")
 
 def Read():
-    run = True
     pin = int(sys.argv[1])
     labrador = k9.Labrador()
     getGpio(labrador,pin)
