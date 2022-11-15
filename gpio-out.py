@@ -79,10 +79,10 @@ elif mode == "pwm":
 
             if(data == 1):
                 print("Led High")
-                labrador.pwm_out.start()
+                labrador.pwm_out.pwm.start()
             elif(data ==0):
                 print("Led Low")
-                labrador.pwm_out.stop()
+                labrador.pwm_out.pwm.stop()
             else:
                 print('invalid input')
                 break
