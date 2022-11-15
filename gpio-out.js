@@ -6,6 +6,7 @@ module.exports = function(RED) {
         this.pin = config.pin;
         this.iotype = config.iotype || "out";
         this.freq = config.freq || 0;
+        this.dutyCicle = config.dutyCicle || 0;
         this.initstate = config.initstate.toString() || 0;
         this.set = config.set || false;
         
@@ -15,7 +16,7 @@ module.exports = function(RED) {
         var spawn = require("child_process").spawn;
         //FIX ME
         //node.child = spawn(gpioCommand, [this.pin, out, 100, 0, false]);
-        node.child = spawn(gpioCommand,[this.pin]);
+        node.child = spawn(gpioCommand,[this.pin,this.iotype,this.freq]);
 
         console.log("Spawning child process");
         var out = 0;
@@ -27,8 +28,7 @@ module.exports = function(RED) {
             }
 
             console.log(out+"----");
-            console.log(this.pin+" "+this.iotype+" "+this.freq
-            +" "+this.initstate+" "+this.set);
+            console.log(this.pin+" "+this.iotype+" "+this.freq +" "+this.dutyCicle + " " + this.initstate+" "+this.set);
 
             if (node.child !== null) {
                 node.child.stdin.write(out+"\n", () => {

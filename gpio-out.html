@@ -25,6 +25,7 @@
             pin: { value:"" },
             iotype: { value:"" },
             freq: { value:"" },
+            dutyCicle: { value:"" },
             initstate: { value:"" },
             set: {value:""}
         },
@@ -69,6 +70,10 @@
                 this.iotype = $('#node-set-freq').val();
             });
 
+            // FREQ POR FORM
+            $('#node-set-duty').on('change', function() {
+                this.dutyCicle = $('#node-set-duty').val();
+            });
 
             var hidestate = function () { 
                 if($("#node-input-iotype").val()==="pwm"){
@@ -76,9 +81,13 @@
                     $('#node-set-initstate').hide();
                     $('#node-input-set').prop('checked', false);
                     $('#node-set-freq').show();
+                    $('#node-set-duty').show();
+
                 }else{
                     $('#node-set-tick').show();
                     $('#node-set-freq').hide();
+                    $('#node-set-duty').hide();
+                    
                     
                 }
              };
@@ -298,6 +307,11 @@
     <div class="form-row" id="node-set-freq">
         <label for="node-input-freq">Frequency</label>
         <input type="text" id="node-input-freq" placeholder="100"> Hz
+    </div>
+
+    <div class="form-row" id="node-set-duty">
+        <label for="node-input-duty">Duty Cicle</label>
+        <input type="text" id="node-input-duty" placeholder="50"> %
     </div>
 
     
