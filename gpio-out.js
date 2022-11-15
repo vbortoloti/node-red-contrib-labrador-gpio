@@ -41,6 +41,12 @@ module.exports = function(RED) {
         }
         node.on('input',inputlistener);
 
+        node.child.on('close', function (code) {
+            node.child.removeAllListeners();
+            delete node.child;
+            node.finished();
+        });
+        
         node.on("close", function(done) {
             if (node.child != null) {
                 node.finished = done;

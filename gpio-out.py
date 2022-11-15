@@ -61,6 +61,7 @@ if mode == "out":
                 labrador.led_out.low()
             else:
                 print('invalid input')
+                sys.exit(0)
                 break
 
             print("saida: "+str(data))
@@ -85,6 +86,7 @@ elif mode == "pwm":
                 labrador.pwm_out.pwm.stop()
             else:
                 print('invalid input')
+                sys.exit(0)
                 break
 
             print("saida: "+str(data))
