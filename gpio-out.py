@@ -19,7 +19,7 @@ def getGpioPwm(labrador, pin_to_enable):
     pin_to_enable = f"pin{pin_to_enable}"
     if hasattr(labrador, pin_to_enable):
         pin = getattr(labrador, pin_to_enable)
-        pin.enable_pwm(alias="pwm_out", freq=frequency, duty_cycle=duty)
+        pin.enable_pwm(alias="pwm_out", freq=frequency, duty_cycle=duty/100)
 
 pin = int(sys.argv[1])
 mode = str(sys.argv[2])
