@@ -70,9 +70,10 @@
                 this.iotype = $('#node-set-freq').val();
             });
 
-            // FREQ POR FORM
             $('#node-set-duty').on('change', function() {
-                this.duty = $('#node-set-duty').val();
+                this.freq = $('#node-set-duty').val();
+                this.setstate = $('#node-set-duty').val();
+                this.iotype = $('#node-set-duty').val();
             });
 
             var hidestate = function () { 
