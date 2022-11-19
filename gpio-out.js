@@ -36,7 +36,7 @@ module.exports = function(RED) {
                 if(lastInputSent == null || lastInputSent != out){
                     lastInputSent = out;
                     if (node.child !== null) {
-                        node.child.stdin.write(out, () => {
+                        node.child.stdin.write(out+"\n", () => {
                             if (done) { done();}
                         });
                     }else {
