@@ -45,6 +45,8 @@ module.exports = function(RED) {
                 }
                 this.status({fill:"green",shape:"dot",text:"connected"});
                 node.send(msg);
+            }else{
+                console.log("Busy");
             }
         }
 
