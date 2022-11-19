@@ -22,7 +22,10 @@ module.exports = function(RED) {
         var out = 0;
         var lastInputSent;
         function inputlistener(msg, send, done) {
-            this.status({fill:"red",shape:"ring",text:"disconnected"});
+            if(this.status.text=="sending")
+                return;
+                
+            this.status({fill:"red",shape:"ring",text:"sending"});
             if(msg.payload == "true" || msg.payload == "1"){
                 out = 1;
             }else if(msg.payload == "false" || msg.payload == "0"){
@@ -40,6 +43,7 @@ module.exports = function(RED) {
                 }
             }
             node.send(msg);
+            this.status({fill:"green",shape:"dot",text:"connected"});
         }
 
         node.on('input',inputlistener);
