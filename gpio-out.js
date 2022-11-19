@@ -20,6 +20,7 @@ module.exports = function(RED) {
 
         console.log("Spawning child process");
         var out = 0;
+        var lastInputSent;
         function inputlistener(msg, send, done) {
             if(msg.payload == "true" || msg.payload == "1"){
                 out = 1;
@@ -29,16 +30,19 @@ module.exports = function(RED) {
 
             console.log(out+"----");
             console.log(this.pin+" "+this.iotype+" "+this.freq +" "+this.duty + " " + this.initstate+" "+this.set);
-
-            if (node.child !== null) {
-                node.child.stdin.write(out+"\n", () => {
-                    if (done) { done(); }
-                });
-            }else {
-                console.log("erro")
+            if(lastInputSent != null || lastInputSent != out){
+                lastInputSent = out;
+                if (node.child !== null) {
+                    node.child.stdin.write(out+"\n", () => {
+                        if (done) { done(); }
+                    });
+                }else {
+                    console.log("erro")
+                }
             }
             node.send(msg);
         }
+
         node.on('input',inputlistener);
 
         node.child.on('close', function (code) {
