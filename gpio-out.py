@@ -68,6 +68,7 @@ if mode == "out":
 
 elif mode == "pwm":
     getGpioPwm(labrador,pin)
+    labrador.pwm_out.pwm.stop()
     while True:
             try:
                 data = raw_input()
