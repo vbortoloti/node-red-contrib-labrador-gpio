@@ -69,6 +69,7 @@ if mode == "out":
 elif mode == "pwm":
     getGpioPwm(labrador,pin)
     labrador.pwm_out.pwm.stop()
+    running = False
     while True:
             try:
                 data = raw_input()
@@ -77,21 +78,25 @@ elif mode == "pwm":
                 data = int(data)
             except (EOFError, SystemExit):        # hopefully always caused by us sigint'ing the program
                 print("erro")
+                labrador.pwm_out.pwm.stop()
                 sys.exit(0)
-
             if(data == 1):
                 print("Led High")
-                labrador.pwm_out.pwm.start()
-                time.sleep(0.25)
+                if not running:
+                    labrador.pwm_out.pwm.start()
+                    time.sleep(0.1)
+                    running = True
             elif(data ==0):
                 print("Led Low")
-                labrador.pwm_out.pwm.stop()
-                time.sleep(0.2)
-                labrador.pwm_out.pwm.stop()
-                time.sleep(0.2)
-
+                if running:
+                    labrador.pwm_out.pwm.stop()
+                    time.sleep(0.1)
+                    running = False
+                time.sleep(2)
             else:
                 print('invalid input')
+                labrador.pwm_out.pwm.stop()
+                running = False
                 sys.exit(0)
                 break
 
