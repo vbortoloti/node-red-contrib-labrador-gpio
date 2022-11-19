@@ -21,10 +21,13 @@ module.exports = function(RED) {
         console.log("Spawning child process");
         var out = 0;
         var lastInputSent;
+
+        this.status({fill:"green",shape:"dot",text:"connected"});
+
+
         function inputlistener(msg, send, done) {
             if(this.status.text=="sending")
                 return;
-                
             this.status({fill:"red",shape:"ring",text:"sending"});
             if(msg.payload == "true" || msg.payload == "1"){
                 out = 1;
@@ -36,7 +39,7 @@ module.exports = function(RED) {
                 lastInputSent = out;
                 if (node.child !== null) {
                     node.child.stdin.write(out+"\n", () => {
-                        if (done) { done(); console.log(out); }
+                        setTimeout(function() { if (done) { done(); } },150);
                     });
                 }else {
                     console.log("erro")
