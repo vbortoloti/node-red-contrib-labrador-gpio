@@ -33,7 +33,7 @@ module.exports = function(RED) {
                 lastInputSent = out;
                 if (node.child !== null) {
                     node.child.stdin.write(out+"\n", () => {
-                        if (done) { done(); console.log("sent"); }
+                        if (done) { done(); console.log(out); }
                     });
                 }else {
                     console.log("erro")
