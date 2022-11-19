@@ -86,7 +86,9 @@ elif mode == "pwm":
             elif(data ==0):
                 print("Led Low")
                 labrador.pwm_out.pwm.stop()
-                time.sleep(0.25)
+                time.sleep(0.2)
+                labrador.pwm_out.pwm.stop()
+                time.sleep(0.2)
 
             else:
                 print('invalid input')
