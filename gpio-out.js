@@ -22,19 +22,18 @@ module.exports = function(RED) {
         var out = 0;
         var lastInputSent;
         function inputlistener(msg, send, done) {
+            this.status({fill:"red",shape:"ring",text:"disconnected"});
             if(msg.payload == "true" || msg.payload == "1"){
                 out = 1;
             }else if(msg.payload == "false" || msg.payload == "0"){
                 out = 0;
             }
-
-            console.log(out+"----");
-            console.log(this.pin+" "+this.iotype+" "+this.freq +" "+this.duty + " " + this.initstate+" "+this.set);
+            //console.log(this.pin+" "+this.iotype+" "+this.freq +" "+this.duty + " " + this.initstate+" "+this.set);
             if(lastInputSent != null || lastInputSent != out){
                 lastInputSent = out;
                 if (node.child !== null) {
                     node.child.stdin.write(out+"\n", () => {
-                        if (done) { done(); }
+                        if (done) { done(); console.log("sent"); }
                     });
                 }else {
                     console.log("erro")
