@@ -36,9 +36,11 @@ module.exports = function(RED) {
                 if(lastInputSent == null || lastInputSent != out){
                     lastInputSent = out;
                     if (node.child !== null) {
+                        sleep(2000).then(() => {  
                         node.child.stdin.write(out+"\n", () => {
-                            setTimeout(function() { if (done) { done(); } },200);
+                            if (done) { done(); }
                         });
+                    });
                     }else {
                         console.log("erro")
                     }
