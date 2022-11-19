@@ -24,29 +24,28 @@ module.exports = function(RED) {
 
         this.status({fill:"green",shape:"dot",text:"connected"});
 
-
         function inputlistener(msg, send, done) {
-            if(this.status.text=="sending")
-                return;
-            this.status({fill:"red",shape:"ring",text:"sending"});
-            if(msg.payload == "true" || msg.payload == "1"){
-                out = 1;
-            }else if(msg.payload == "false" || msg.payload == "0"){
-                out = 0;
-            }
-            //console.log(this.pin+" "+this.iotype+" "+this.freq +" "+this.duty + " " + this.initstate+" "+this.set);
-            if(lastInputSent == null || lastInputSent != out){
-                lastInputSent = out;
-                if (node.child !== null) {
-                    node.child.stdin.write(out+"\n", () => {
-                        setTimeout(function() { if (done) { done(); } },150);
-                    });
-                }else {
-                    console.log("erro")
+            if(this.status.text!="sending"){
+                this.status({fill:"red",shape:"ring",text:"sending"});
+                if(msg.payload == "true" || msg.payload == "1"){
+                    out = 1;
+                }else if(msg.payload == "false" || msg.payload == "0"){
+                    out = 0;
                 }
+                //console.log(this.pin+" "+this.iotype+" "+this.freq +" "+this.duty + " " + this.initstate+" "+this.set);
+                if(lastInputSent == null || lastInputSent != out){
+                    lastInputSent = out;
+                    if (node.child !== null) {
+                        node.child.stdin.write(out+"\n", () => {
+                            setTimeout(function() { if (done) { done(); } },200);
+                        });
+                    }else {
+                        console.log("erro")
+                    }
+                }
+                this.status({fill:"green",shape:"dot",text:"connected"});
+                node.send(msg);
             }
-            node.send(msg);
-            this.status({fill:"green",shape:"dot",text:"connected"});
         }
 
         node.on('input',inputlistener);
