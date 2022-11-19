@@ -29,7 +29,7 @@ module.exports = function(RED) {
                 out = 0;
             }
             //console.log(this.pin+" "+this.iotype+" "+this.freq +" "+this.duty + " " + this.initstate+" "+this.set);
-            if(lastInputSent != null || lastInputSent != out){
+            if(lastInputSent == null || lastInputSent != out){
                 lastInputSent = out;
                 if (node.child !== null) {
                     node.child.stdin.write(out+"\n", () => {
