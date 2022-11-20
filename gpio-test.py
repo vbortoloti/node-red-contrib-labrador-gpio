@@ -40,7 +40,7 @@ if mode == "out":
     getGpio(labrador,pin)
     data = False
     while True:
-            time.sleep(1)
+            time.sleep(0.5)
             data = not data
             if(data == 1):
                 print("Led High")
