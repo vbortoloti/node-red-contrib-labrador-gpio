@@ -41,7 +41,7 @@ if mode == "pwm":
     running = False
     data = False
     while True:
-            time.sleep(1)
+            time.sleep(0.1)
             labrador.pwm_out.pwm.start()
-            time.sleep(1)
+            time.sleep(0.1)
             labrador.pwm_out.pwm.stop()
