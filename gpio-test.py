@@ -64,16 +64,15 @@ elif mode == "pwm":
             time.sleep(0.1)
             data = not data
             if(data == 1):
-                time.sleep(0.1)
-                print("Led High")
                 if not running:
                     labrador.pwm_out.pwm.start()
+                    time.sleep(0.1)
                     running = True
             elif(data ==0):
-                time.sleep(0.1)
                 print("Led Low")
                 if running:
                     labrador.pwm_out.pwm.stop()
+                    time.sleep(0.1)
                     running = False
             else:
                 print('invalid input')
