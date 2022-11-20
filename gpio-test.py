@@ -40,7 +40,7 @@ if mode == "out":
     getGpio(labrador,pin)
     data = False
     while True:
-            time.sleep(0.5)
+            time.sleep(0.2)
             data = not data
             if(data == 1):
                 print("Led High")
@@ -61,7 +61,7 @@ elif mode == "pwm":
     running = False
     data = False
     while True:
-            time.sleep(1)
+            time.sleep(0.2)
             data = not data
             if(data == 1):
                 print("Led High")
@@ -73,7 +73,6 @@ elif mode == "pwm":
                 if running:
                     labrador.pwm_out.pwm.stop()
                     running = False
-                time.sleep(2)
             else:
                 print('invalid input')
                 labrador.pwm_out.pwm.stop()
