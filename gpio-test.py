@@ -61,7 +61,7 @@ elif mode == "pwm":
     running = False
     data = False
     while True:
-            time.sleep(0.2)
+            time.sleep(0.1)
             data = not data
             if(data == 1):
                 print("Led High")
