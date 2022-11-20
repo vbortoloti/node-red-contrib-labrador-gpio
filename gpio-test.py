@@ -45,14 +45,12 @@ if mode == "pwm":
             data = not data
             if(data == 1):
                 if not running:
-                    labrador.pwm_out.pwm.start()
-                    labrador.pwm_out.pwm.start()
                     running = True
+                    labrador.pwm_out.pwm.start()
             elif(data ==0):
                 if running:
-                    labrador.pwm_out.pwm.stop()
-                    labrador.pwm_out.pwm.stop()
                     running = False
+                    labrador.pwm_out.pwm.stop()
             else:
                 print('invalid input')
                 labrador.pwm_out.pwm.stop()
