@@ -42,7 +42,7 @@ if mode == "pwm":
     running = False
     data = False
     while True:
-            time.sleep(0.1)
+            time.sleep(0.25)
             data = not data
             if(data == 1):
                 if not running:
