@@ -36,26 +36,7 @@ labrador = k9.Labrador()
 
 print("running")
 
-if mode == "out":
-    getGpio(labrador,pin)
-    data = False
-    while True:
-            time.sleep(0.2)
-            data = not data
-            if(data == 1):
-                print("Led High")
-                labrador.led_out.high()
-            elif(data ==0):
-                print("Led Low")
-                labrador.led_out.low()
-            else:
-                print('invalid input')
-                sys.exit(0)
-                break
-
-            print("saida: "+str(data))
-
-elif mode == "pwm":
+if mode == "pwm":
     getGpioPwm(labrador,pin)
     labrador.pwm_out.pwm.stop()
     running = False
@@ -69,10 +50,9 @@ elif mode == "pwm":
                     time.sleep(0.2)
                     running = True
             elif(data ==0):
-                print("Led Low")
                 if running:
                     labrador.pwm_out.pwm.stop()
-                    time.sleep(0.2)
+                    time.sleep(0.1)
                     running = False
             else:
                 print('invalid input')
