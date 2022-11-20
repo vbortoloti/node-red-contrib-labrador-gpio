@@ -54,7 +54,6 @@ if mode == "pwm":
                     labrador.pwm_out.pwm.stop()
                     labrador.pwm_out.pwm.stop()
                     labrador.pwm_out.pwm.stop()
-                    labrador.pwm_out.pwm.stop()
             else:
                 print('invalid input')
                 labrador.pwm_out.pwm.stop()
