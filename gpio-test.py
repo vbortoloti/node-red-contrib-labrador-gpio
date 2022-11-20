@@ -38,7 +38,6 @@ print("running")
 
 if mode == "pwm":
     getGpioPwm(labrador,pin)
-    labrador.pwm_out.pwm.stop()
     running = False
     data = False
     while True:
