@@ -47,10 +47,11 @@ if mode == "pwm":
             if(data == 1):
                 if not running:
                     labrador.pwm_out.pwm.start()
-                    time.sleep(0.2)
+                    labrador.pwm_out.pwm.start()
                     running = True
             elif(data ==0):
                 if running:
+                    labrador.pwm_out.pwm.stop()
                     labrador.pwm_out.pwm.stop()
                     time.sleep(0.1)
                     running = False
@@ -60,5 +61,4 @@ if mode == "pwm":
                 running = False
                 sys.exit(0)
                 break
-
             print("saida: "+str(data))
